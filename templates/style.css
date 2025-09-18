@@ -69,10 +69,32 @@ h3 {
 
 section {
     margin-bottom: 2em;
+    orphans: 2;
+    widows: 2;
+}
+
+.experience-item {
+    margin-bottom: 1.5em;
+}
+
+h3 {
+    page-break-after: avoid;
+    orphans: 2;
+    widows: 2;
+}
+
+ul, ol {
+    orphans: 2;
+    widows: 2;
+}
+
+li {
+    orphans: 1;
+    widows: 1;
 }
 
 .section-title {
-    background: #000;
+    background: #57688a;
     color: #fff;
     padding: 6px 10px;
     font-size: 1.1em;
