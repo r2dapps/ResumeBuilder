@@ -21,6 +21,14 @@ function changeStep(direction) {
         document.querySelector(`.step[data-step="${i}"]`).classList.add('completed');
     }
     
+    // Reset scroll position to top - force scroll
+    setTimeout(() => {
+        const formSidebar = document.querySelector('.form-sidebar');
+        if (formSidebar) {
+            formSidebar.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    }, 50);
+    
     // Update navigation buttons
     updateNavigation();
     
@@ -49,20 +57,29 @@ function addExperience() {
     const newItem = document.createElement('div');
     newItem.className = 'experience-item';
     newItem.innerHTML = `
-        <input type="text" placeholder="Job Title - Company" class="jobTitle">
-        <div class="date-range">
-            <div class="custom-date">
-                <select class="startMonth"><option value="">Month</option></select>
-                <select class="startYear"><option value="">Year</option></select>
-            </div>
-            <span>to</span>
-            <div class="custom-date">
-                <select class="endMonth"><option value="">Month</option></select>
-                <select class="endYear"><option value="">Year</option></select>
-            </div>
-            <label><input type="checkbox" class="currentJob"> Current Position</label>
+        <div class="form-group">
+            <label>Job Title - Company</label>
+            <input type="text" placeholder="Software Engineer - Tech Corp" class="jobTitle">
         </div>
-        <textarea placeholder="Job responsibilities (one per line)" rows="3" class="responsibilities"></textarea>
+        <div class="form-group">
+            <label>Employment Period</label>
+            <div class="date-range">
+                <div class="custom-date">
+                    <select class="startMonth"><option value="">Month</option></select>
+                    <select class="startYear"><option value="">Year</option></select>
+                </div>
+                <span>to</span>
+                <div class="custom-date">
+                    <select class="endMonth"><option value="">Month</option></select>
+                    <select class="endYear"><option value="">Year</option></select>
+                </div>
+                <label><input type="checkbox" class="currentJob"> Current Position</label>
+            </div>
+        </div>
+        <div class="form-group">
+            <label>Job Responsibilities</label>
+            <textarea placeholder="• Developed web applications\n• Led team of 5 developers\n• Improved system performance by 30%" rows="3" class="responsibilities"></textarea>
+        </div>
         <button type="button" onclick="this.parentElement.remove(); generateResume();">Remove</button>
     `;
     container.appendChild(newItem);
@@ -113,8 +130,14 @@ function addSkill() {
     const newItem = document.createElement('div');
     newItem.className = 'skill-item';
     newItem.innerHTML = `
-        <input type="text" placeholder="Skill Category" class="skillCategory">
-        <input type="text" placeholder="Skills (comma separated)" class="skillList">
+        <div class="form-group">
+            <label>Skill Category</label>
+            <input type="text" placeholder="e.g., Programming Languages" class="skillCategory">
+        </div>
+        <div class="form-group">
+            <label>Skills</label>
+            <input type="text" placeholder="JavaScript, Python, Java" class="skillList">
+        </div>
         <button type="button" onclick="this.parentElement.remove(); generateResume();">Remove</button>
     `;
     container.appendChild(newItem);
@@ -126,11 +149,20 @@ function addCertification() {
     const newItem = document.createElement('div');
     newItem.className = 'certification-item';
     newItem.innerHTML = `
-        <input type="text" placeholder="Certification Name" class="certName">
-        <input type="text" placeholder="Issuing Organization" class="certOrg">
-        <div class="custom-date single">
-            <select class="certMonth"><option value="">Month</option></select>
-            <select class="certYear"><option value="">Year</option></select>
+        <div class="form-group">
+            <label>Certification Name</label>
+            <input type="text" placeholder="AWS Certified Solutions Architect" class="certName">
+        </div>
+        <div class="form-group">
+            <label>Issuing Organization</label>
+            <input type="text" placeholder="Amazon Web Services" class="certOrg">
+        </div>
+        <div class="form-group">
+            <label>Date Obtained</label>
+            <div class="custom-date single">
+                <select class="certMonth"><option value="">Month</option></select>
+                <select class="certYear"><option value="">Year</option></select>
+            </div>
         </div>
         <button type="button" onclick="this.parentElement.remove(); generateResume();">Remove</button>
     `;
@@ -143,15 +175,21 @@ function addLanguage() {
     const newItem = document.createElement('div');
     newItem.className = 'language-item';
     newItem.innerHTML = `
-        <input type="text" placeholder="Language" class="languageName">
-        <select class="proficiency">
-            <option value="">Proficiency Level</option>
-            <option value="Native">Native</option>
-            <option value="Fluent">Fluent</option>
-            <option value="Advanced">Advanced</option>
-            <option value="Intermediate">Intermediate</option>
-            <option value="Basic">Basic</option>
-        </select>
+        <div class="form-group">
+            <label>Language</label>
+            <input type="text" placeholder="English" class="languageName">
+        </div>
+        <div class="form-group">
+            <label>Proficiency Level</label>
+            <select class="proficiency">
+                <option value="">Select Level</option>
+                <option value="Native">Native</option>
+                <option value="Fluent">Fluent</option>
+                <option value="Advanced">Advanced</option>
+                <option value="Intermediate">Intermediate</option>
+                <option value="Basic">Basic</option>
+            </select>
+        </div>
         <button type="button" onclick="this.parentElement.remove(); generateResume();">Remove</button>
     `;
     container.appendChild(newItem);
@@ -181,6 +219,26 @@ function addEventListeners(element) {
         input.addEventListener('input', generateResume);
         input.addEventListener('change', generateResume);
     });
+    
+    // Add current job toggle functionality
+    const currentJobCheckbox = element.querySelector('.currentJob');
+    if (currentJobCheckbox) {
+        currentJobCheckbox.addEventListener('change', function() {
+            const endMonth = element.querySelector('.endMonth');
+            const endYear = element.querySelector('.endYear');
+            
+            if (this.checked) {
+                endMonth.disabled = true;
+                endYear.disabled = true;
+                endMonth.value = '';
+                endYear.value = '';
+            } else {
+                endMonth.disabled = false;
+                endYear.disabled = false;
+            }
+            generateResume();
+        });
+    }
     
     // Populate year dropdowns in new elements
     const yearSelects = element.querySelectorAll('select[class*="Year"]');
@@ -483,19 +541,65 @@ function downloadPDF() {
     const element = document.getElementById('resume');
     
     const clone = element.cloneNode(true);
-    clone.style.boxShadow = 'none';
-    clone.style.margin = '0';
-    clone.style.padding = '0';
-    clone.style.border = 'none';
-    clone.style.borderRadius = '0';
-    clone.style.fontSize = '11pt';
-    clone.style.lineHeight = '1.6';
-    clone.style.maxWidth = 'none';
-    clone.style.width = '100%';
-    clone.style.background = '#fff';
+    
+    // Apply print styles directly to clone
+    clone.style.cssText = `
+        width: 100% !important;
+        max-width: none !important;
+        margin: 0 !important;
+        padding: 15px !important;
+        box-shadow: none !important;
+        background: white !important;
+        font-size: 11pt !important;
+        line-height: 1.6 !important;
+        border-radius: 0 !important;
+    `;
+    
+    // Apply template-specific borders and colors
+    const currentTemplate = document.getElementById('templateSelector').value;
+    if (currentTemplate.includes('template1')) {
+        // Modern Minimalist - blue header border
+        const header = clone.querySelector('.header');
+        if (header) header.style.borderBottom = '3px solid #3498db';
+        const sectionTitles = clone.querySelectorAll('.section-title');
+        sectionTitles.forEach(title => {
+            title.style.background = '#3498db';
+            title.style.color = '#fff';
+        });
+    } else if (currentTemplate.includes('template2')) {
+        // Executive Professional - left border and blue accents
+        clone.style.borderLeft = '6px solid #2b6cb0';
+        const header = clone.querySelector('.header');
+        if (header) header.style.borderBottom = '2px solid #e2e8f0';
+        const sectionTitles = clone.querySelectorAll('.section-title');
+        sectionTitles.forEach(title => {
+            title.style.background = '#2b6cb0';
+            title.style.color = '#fff';
+        });
+        const h3s = clone.querySelectorAll('h3');
+        h3s.forEach(h3 => h3.style.borderLeft = '3px solid #bee3f8');
+    } else if (currentTemplate.includes('template4')) {
+        // Classic Elegant - right border
+        clone.style.borderRight = '3px double #8b4513';
+        const header = clone.querySelector('.header');
+        if (header) header.style.borderBottom = '2px solid #8b4513';
+        const sectionTitles = clone.querySelectorAll('.section-title');
+        sectionTitles.forEach(title => {
+            title.style.borderTop = '1px solid #d2b48c';
+            title.style.borderBottom = '1px solid #d2b48c';
+            title.style.color = '#8b4513';
+        });
+    } else {
+        // Original template - blue section titles
+        const sectionTitles = clone.querySelectorAll('.section-title');
+        sectionTitles.forEach(title => {
+            title.style.background = '#57688a';
+            title.style.color = '#fff';
+        });
+    }
 
     const opt = {
-        margin: [20, 15, 20, 15],
+        margin: [10, 10, 10, 10],
         filename: generateFilename(),
         image: { type: 'jpeg', quality: 0.98 },
         html2canvas: {
@@ -509,7 +613,7 @@ function downloadPDF() {
             format: 'a4',
             orientation: 'portrait'
         },
-        pagebreak: { mode: ['avoid-all', 'css', 'legacy'] }
+        pagebreak: { mode: ['css', 'legacy'] }
     };
 
     html2pdf().set(opt).from(clone).save();
@@ -578,6 +682,26 @@ document.addEventListener('DOMContentLoaded', function() {
         input.addEventListener('change', generateResume);
     });
     
+    // Add current job toggle functionality for existing elements
+    document.querySelectorAll('.currentJob').forEach(checkbox => {
+        checkbox.addEventListener('change', function() {
+            const experienceItem = this.closest('.experience-item');
+            const endMonth = experienceItem.querySelector('.endMonth');
+            const endYear = experienceItem.querySelector('.endYear');
+            
+            if (this.checked) {
+                endMonth.disabled = true;
+                endYear.disabled = true;
+                endMonth.value = '';
+                endYear.value = '';
+            } else {
+                endMonth.disabled = false;
+                endYear.disabled = false;
+            }
+            generateResume();
+        });
+    });
+    
     // Generate initial resume
     generateResume();
     updateNavigation();
@@ -604,6 +728,14 @@ function goToStep(stepNumber) {
     for (let i = currentStep; i <= totalSteps; i++) {
         document.querySelector(`.step[data-step="${i}"]`).classList.remove('completed');
     }
+    
+    // Reset scroll position to top - force scroll
+    setTimeout(() => {
+        const formSidebar = document.querySelector('.form-sidebar');
+        if (formSidebar) {
+            formSidebar.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    }, 50);
     
     // Update navigation
     updateNavigation();
