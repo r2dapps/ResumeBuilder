@@ -43,8 +43,9 @@
                         <button class="step active" data-step="1">Personal</button>
                         <button class="step" data-step="2">Skills</button>
                         <button class="step" data-step="3">Experience</button>
-                        <button class="step" data-step="4">Education</button>
-                        <button class="step" data-step="5">Additional</button>
+                        <button class="step" data-step="4">Projects</button>
+                        <button class="step" data-step="5">Education</button>
+                        <button class="step" data-step="6">Additional</button>
                     </div>
                 </div>
 
@@ -65,19 +66,19 @@
                         </div>
                         <div class="form-group">
                             <label for="phone">Phone *</label>
-                            <input type="tel" id="phone" placeholder="+1 (555) 123-4567" required>
+                            <input type="tel" id="phone" placeholder="+1 (555) 123-4567" required pattern="[+0-9\s\(\)\-]*">
                         </div>
                         <div class="form-group">
                             <label>Professional Links</label>
                             <div class="link-group">
                                 <input type="text" id="linkName1" placeholder="LinkedIn" class="link-name">
-                                <input type="text" id="linkUrl1" placeholder="https://linkedin.com/in/yourname" class="link-url">
+                                <input type="url" id="linkUrl1" placeholder="https://linkedin.com/in/yourname" class="link-url">
                             </div>
                         </div>
                         <div class="form-group">
                             <div class="link-group">
                                 <input type="text" id="linkName2" placeholder="Portfolio" class="link-name">
-                                <input type="text" id="linkUrl2" placeholder="https://yourportfolio.com" class="link-url">
+                                <input type="url" id="linkUrl2" placeholder="https://yourportfolio.com" class="link-url">
                             </div>
                         </div>
                         <div class="form-group">
@@ -140,6 +141,31 @@
                     </div>
 
                     <div class="step-content" id="step4">
+                        <h3>Projects</h3>
+                        <div id="projectsContainer">
+                            <div class="project-item">
+                                <div class="form-group">
+                                    <label>Project Name</label>
+                                    <input type="text" placeholder="E-commerce Website" class="projectName">
+                                </div>
+                                <div class="form-group">
+                                    <label>Description</label>
+                                    <textarea placeholder="Built a full-stack e-commerce platform with user authentication, payment integration, and admin dashboard" rows="3" class="projectDesc"></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label>Technologies Used</label>
+                                    <input type="text" placeholder="React, Node.js, MongoDB, Stripe API" class="projectTech">
+                                </div>
+                                <div class="form-group">
+                                    <label>Demo/Repository Link (Optional)</label>
+                                    <input type="url" placeholder="https://github.com/username/project or https://demo.com" class="projectLink">
+                                </div>
+                            </div>
+                        </div>
+                        <button type="button" onclick="addProject()" class="btn-add">+ Add Project</button>
+                    </div>
+
+                    <div class="step-content" id="step5">
                         <h3>Education</h3>
                         <div id="educationContainer">
                             <div class="education-item">
@@ -167,14 +193,14 @@
                                 </div>
                                 <div class="form-group">
                                     <label>GPA/Percentage</label>
-                                    <input type="text" placeholder="3.8/4.0 or 85%" class="gpa">
+                                    <input type="number" placeholder="3.8 or 85" class="gpa" step="0.01" min="0" max="100">
                                 </div>
                             </div>
                         </div>
                         <button type="button" onclick="addEducation()" class="btn-add">+ Add Education</button>
                     </div>
 
-                    <div class="step-content" id="step5">
+                    <div class="step-content" id="step6">
                         <h3>Additional Information</h3>
                         <div class="form-group">
                             <label>Certifications</label>
@@ -245,7 +271,7 @@
                             <label for="templateSelector">Choose Template:</label>
                             <select id="templateSelector" onchange="changeTemplate()">
                                 <option value="templates/template1.css" selected>Modern Minimalist</option>
-                                <option value="templates/style.css">Original</option>
+                                <option value="templates/style.css">Classic Professional</option>
                                 <option value="templates/template2.css">Executive Professional</option>
                                 <option value="templates/template3.css">Creative Designer</option>
                                 <option value="templates/template4.css">Classic Elegant</option>
