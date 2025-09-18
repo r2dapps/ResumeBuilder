@@ -11,7 +11,7 @@ body {
     padding: 2cm;
     margin: auto;
     max-width: 800px;
-    border: 3px double #8b4513;
+    border-right: 3px double #8b4513;
     box-shadow: 0 0 20px rgba(139, 69, 19, 0.1);
 }
 
@@ -54,6 +54,14 @@ section {
     margin-bottom: 30px;
 }
 
+.experience-item {
+    margin-bottom: 20px;
+}
+
+h3 {
+    page-break-after: avoid;
+}
+
 h3 {
     color: #654321;
     font-weight: bold;
@@ -90,4 +98,75 @@ ul {
 .print-controls button:hover {
     background: #654321;
     border-color: #8b4513;
+}
+
+@media print {
+    * {
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+    }
+    
+    @page {
+        size: A4;
+        margin: 1.8cm;
+    }
+    
+    body {
+        background: white !important;
+        font-size: 11pt !important;
+        line-height: 1.6 !important;
+    }
+    
+    .resume-container {
+        width: 100% !important;
+        max-width: none !important;
+        margin: 0 !important;
+        padding: 15px !important;
+        box-shadow: none !important;
+        background: white !important;
+        border-right: 3px double #8b4513 !important;
+    }
+    
+    .header {
+        border-bottom: 2px solid #8b4513 !important;
+        page-break-inside: avoid;
+        page-break-after: avoid;
+    }
+    
+    .section-title {
+        color: #8b4513 !important;
+        border-top: 1px solid #d2b48c !important;
+        border-bottom: 1px solid #d2b48c !important;
+        page-break-inside: avoid;
+        page-break-after: avoid;
+    }
+    
+    section {
+        orphans: 2;
+        widows: 2;
+    }
+    
+    .experience-item {
+        margin-bottom: 15px;
+    }
+    
+    h3 {
+        page-break-after: avoid;
+        orphans: 2;
+        widows: 2;
+    }
+    
+    ul, ol {
+        orphans: 2;
+        widows: 2;
+    }
+    
+    li {
+        orphans: 1;
+        widows: 1;
+    }
+    
+    .print-controls {
+        display: none;
+    }
 }
