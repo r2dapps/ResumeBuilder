@@ -1,6 +1,6 @@
 @page {
     size: A4;
-    margin: 2cm;
+    margin: 1.8cm;
 }
 
 @media print {
@@ -13,7 +13,6 @@
         margin: 0;
         background: #fff !important;
         font-size: 11pt;
-        color: #000 !important;
     }
 
     .print-controls, .navbar, .form-sidebar, .preview-header, .form-navigation {
@@ -37,32 +36,57 @@
 
     .resume-container {
         box-shadow: none !important;
-        padding: 20px !important;
+        padding: 0 !important;
         margin: 0 !important;
-        border: none !important;
-        border-radius: 0 !important;
         transform: none !important;
         background: white !important;
-        color: #000 !important;
         max-width: none !important;
         width: 100% !important;
+        height: auto !important;
+        max-height: none !important;
+        overflow: visible !important;
     }
     
-    .header, .name, .contact, .section-title, h3, p, li {
-        color: #000 !important;
-    }
+
     
-    .section-title {
-        background-color: #333 !important;
-        color: white !important;
-    }
+
 
     section {
-        page-break-inside: avoid;
-        margin-bottom: 15px !important;
+        margin-bottom: 20px !important;
     }
 
-    h3, p, ul, li {
+    .section-title {
+        page-break-after: avoid;
+        break-after: avoid;
+    }
+
+    h3 {
+        page-break-after: avoid;
+        break-after: avoid;
+    }
+
+    /* Allow sections to break but keep related content together */
+    ul, ol {
+        break-inside: auto;
+        page-break-inside: auto;
+    }
+
+    li {
         break-inside: avoid;
+        page-break-inside: avoid;
+        orphans: 2;
+        widows: 2;
+    }
+
+    /* Prevent orphaned content */
+    * {
+        orphans: 2;
+        widows: 2;
+    }
+
+    /* Maintain readability */
+    body {
+        font-size: 11pt !important;
+        line-height: 1.4 !important;
     }
 }
