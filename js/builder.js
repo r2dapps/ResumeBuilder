@@ -1,6 +1,6 @@
 // Step Management
 let currentStep = 1;
-const totalSteps = 5;
+const totalSteps = 6;
 
 function changeStep(direction) {
     const newStep = currentStep + direction;
@@ -91,9 +91,22 @@ function addProject() {
     const newItem = document.createElement('div');
     newItem.className = 'project-item';
     newItem.innerHTML = `
-        <input type="text" placeholder="Project Name" class="projectName">
-        <input type="text" placeholder="Technologies Used" class="projectTech">
-        <textarea placeholder="Project description" rows="2" class="projectDesc"></textarea>
+        <div class="form-group">
+            <label>Project Name</label>
+            <input type="text" placeholder="E-commerce Website" class="projectName">
+        </div>
+        <div class="form-group">
+            <label>Description</label>
+            <textarea placeholder="Built a full-stack e-commerce platform with user authentication, payment integration, and admin dashboard" rows="3" class="projectDesc"></textarea>
+        </div>
+        <div class="form-group">
+            <label>Technologies Used</label>
+            <input type="text" placeholder="React, Node.js, MongoDB, Stripe API" class="projectTech">
+        </div>
+        <div class="form-group">
+            <label>Demo/Repository Link (Optional)</label>
+            <input type="url" placeholder="https://github.com/username/project or https://demo.com" class="projectLink">
+        </div>
         <button type="button" onclick="this.parentElement.remove(); generateResume();">Remove</button>
     `;
     container.appendChild(newItem);
@@ -118,7 +131,7 @@ function addEducation() {
                 <select class="eduEndYear"><option value="">Year</option></select>
             </div>
         </div>
-        <input type="text" placeholder="GPA/Percentage" class="gpa">
+        <input type="number" placeholder="3.8 or 85" class="gpa" step="0.01" min="0" max="100">
         <button type="button" onclick="this.parentElement.remove(); generateResume();">Remove</button>
     `;
     container.appendChild(newItem);
@@ -285,8 +298,14 @@ function generateResume() {
     
     let contactInfo = [];
     contactInfo.push(email, phone);
-    if (linkName1 && linkUrl1) contactInfo.push(`<a href="${linkUrl1}" target="_blank">${linkName1}</a>`);
-    if (linkName2 && linkUrl2) contactInfo.push(`<a href="${linkUrl2}" target="_blank">${linkName2}</a>`);
+    if (linkName1 && linkUrl1) {
+        const url1 = linkUrl1.startsWith('http') ? linkUrl1 : `https://${linkUrl1}`;
+        contactInfo.push(`<a href="${url1}" target="_blank">${linkName1}</a>`);
+    }
+    if (linkName2 && linkUrl2) {
+        const url2 = linkUrl2.startsWith('http') ? linkUrl2 : `https://${linkUrl2}`;
+        contactInfo.push(`<a href="${url2}" target="_blank">${linkName2}</a>`);
+    }
     contactInfo.push(location);
     
     headerHTML += `<div class="contact">${contactInfo.join(' | ')}</div>`;
@@ -384,13 +403,21 @@ function generateResume() {
         const projectName = item.querySelector('.projectName').value;
         const projectTech = item.querySelector('.projectTech').value;
         const projectDesc = item.querySelector('.projectDesc').value;
+        const projectLink = item.querySelector('.projectLink').value;
         
         if (projectName) {
-            projectsHTML += `
-                <h3>${projectName}</h3>
-                <p><em>Technologies: ${projectTech}</em></p>
-                <p>${projectDesc}</p>
-            `;
+            projectsHTML += `<h3>${projectName}</h3>`;
+            if (projectTech) {
+                projectsHTML += `<p><em>Technologies: ${projectTech}</em></p>`;
+            }
+            if (projectDesc) {
+                projectsHTML += `<p>${projectDesc}</p>`;
+            }
+            if (projectLink) {
+                const url = projectLink.startsWith('http') ? projectLink : `https://${projectLink}`;
+                const linkText = projectLink.length > 50 ? projectLink.substring(0, 47) + '...' : projectLink;
+                projectsHTML += `<p><strong>Link:</strong> <a href="${url}" target="_blank">${linkText}</a></p>`;
+            }
             hasProjects = true;
         }
     });
@@ -422,10 +449,20 @@ function generateResume() {
                 duration = `${startMonth} ${startYear} - ${endMonth} ${endYear}`;
             }
             
+            let gpaText = '';
+            if (gpa) {
+                const gpaValue = parseFloat(gpa);
+                if (gpaValue <= 10) {
+                    gpaText = `<p>GPA: ${gpa}</p>`;
+                } else {
+                    gpaText = `<p>Percentage: ${gpa}%</p>`;
+                }
+            }
+            
             educationHTML += `
                 <h3>${degree} - ${institution}</h3>
                 <p><em>${duration}</em></p>
-                ${gpa ? `<p>GPA/Score: ${gpa}</p>` : ''}
+                ${gpaText}
             `;
             hasEducation = true;
         }
@@ -676,10 +713,56 @@ document.addEventListener('DOMContentLoaded', function() {
         document.getElementById('resumeStyle').href = 'templates/template1.css';
     }
     
+    // Add phone validation
+    const phoneInput = document.getElementById('phone');
+    phoneInput.addEventListener('input', function() {
+        this.value = this.value.replace(/[^+0-9\s\(\)\-]/g, '');
+    });
+    phoneInput.addEventListener('keypress', function(e) {
+        const char = String.fromCharCode(e.which);
+        if (!/[+0-9\s\(\)\-]/.test(char)) {
+            e.preventDefault();
+        }
+    });
+    
     const inputs = document.querySelectorAll('input, textarea, select');
     inputs.forEach(input => {
         input.addEventListener('input', generateResume);
         input.addEventListener('change', generateResume);
+        
+        // URL validation
+        if (input.type === 'url') {
+            input.addEventListener('input', function() {
+                const value = this.value.trim();
+                if (value && !value.match(/^https?:\/\/.+/)) {
+                    this.setCustomValidity('Please enter a valid URL starting with http:// or https://');
+                } else {
+                    this.setCustomValidity('');
+                }
+            });
+        }
+        
+        // Email validation
+        if (input.type === 'email') {
+            input.addEventListener('input', function() {
+                const value = this.value.trim();
+                if (value && !value.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)) {
+                    this.setCustomValidity('Please enter a valid email address');
+                } else {
+                    this.setCustomValidity('');
+                }
+            });
+        }
+        
+        // Phone validation for tel inputs
+        if (input.type === 'tel') {
+            input.addEventListener('keypress', function(e) {
+                const char = String.fromCharCode(e.which);
+                if (!/[+0-9\s\(\)\-]/.test(char)) {
+                    e.preventDefault();
+                }
+            });
+        }
     });
     
     // Add current job toggle functionality for existing elements
