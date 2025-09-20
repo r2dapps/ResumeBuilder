@@ -1208,7 +1208,47 @@ function downloadDOC() {
     
     const children = [];
     
-    // Header with styling
+    // Header with template-specific styling
+    let headerBorder = {};
+    
+    if (currentTemplate.includes('template1')) {
+        headerBorder = {
+            bottom: {
+                color: primaryColor,
+                space: 1,
+                style: BorderStyle.SINGLE,
+                size: 18
+            }
+        };
+    } else if (currentTemplate.includes('template2')) {
+        headerBorder = {
+            bottom: {
+                color: "e2e8f0",
+                space: 1,
+                style: BorderStyle.SINGLE,
+                size: 12
+            }
+        };
+    } else if (currentTemplate.includes('template4')) {
+        headerBorder = {
+            bottom: {
+                color: primaryColor,
+                space: 1,
+                style: BorderStyle.SINGLE,
+                size: 12
+            }
+        };
+    } else {
+        headerBorder = {
+            bottom: {
+                color: primaryColor,
+                space: 1,
+                style: BorderStyle.SINGLE,
+                size: 12
+            }
+        };
+    }
+    
     children.push(
         new Paragraph({
             children: [new TextRun({ 
@@ -1220,14 +1260,7 @@ function downloadDOC() {
             })],
             alignment: AlignmentType.CENTER,
             spacing: { after: 200 },
-            border: {
-                bottom: {
-                    color: primaryColor,
-                    space: 1,
-                    style: BorderStyle.SINGLE,
-                    size: 6
-                }
-            }
+            border: headerBorder
         })
     );
     
@@ -1278,13 +1311,17 @@ function downloadDOC() {
                     text: "PROFESSIONAL SUMMARY", 
                     bold: true, 
                     size: 24,
-                    color: primaryColor,
+                    color: currentTemplate.includes('template4') ? primaryColor : "ffffff",
                     font: "Arial"
                 })],
                 spacing: { before: 300, after: 200 },
                 shading: {
-                    fill: "f8f9fa"
-                }
+                    fill: currentTemplate.includes('template4') ? "f8f9fa" : primaryColor
+                },
+                border: currentTemplate.includes('template4') ? {
+                    top: { color: "d2b48c", style: BorderStyle.SINGLE, size: 6 },
+                    bottom: { color: "d2b48c", style: BorderStyle.SINGLE, size: 6 }
+                } : {}
             }),
             new Paragraph({
                 children: [new TextRun({ 
@@ -1314,13 +1351,17 @@ function downloadDOC() {
                             text: "SKILLS", 
                             bold: true, 
                             size: 24,
-                            color: primaryColor,
+                            color: currentTemplate.includes('template4') ? primaryColor : "ffffff",
                             font: "Arial"
                         })],
                         spacing: { before: 300, after: 200 },
                         shading: {
-                            fill: "f8f9fa"
-                        }
+                            fill: currentTemplate.includes('template4') ? "f8f9fa" : primaryColor
+                        },
+                        border: currentTemplate.includes('template4') ? {
+                            top: { color: "d2b48c", style: BorderStyle.SINGLE, size: 6 },
+                            bottom: { color: "d2b48c", style: BorderStyle.SINGLE, size: 6 }
+                        } : {}
                     })
                 );
                 hasSkills = true;
@@ -1366,13 +1407,17 @@ function downloadDOC() {
                             text: "WORK EXPERIENCE", 
                             bold: true, 
                             size: 24,
-                            color: primaryColor,
+                            color: currentTemplate.includes('template4') ? primaryColor : "ffffff",
                             font: "Arial"
                         })],
                         spacing: { before: 300, after: 200 },
                         shading: {
-                            fill: "f8f9fa"
-                        }
+                            fill: currentTemplate.includes('template4') ? "f8f9fa" : primaryColor
+                        },
+                        border: currentTemplate.includes('template4') ? {
+                            top: { color: "d2b48c", style: BorderStyle.SINGLE, size: 6 },
+                            bottom: { color: "d2b48c", style: BorderStyle.SINGLE, size: 6 }
+                        } : {}
                     })
                 );
                 hasExperience = true;
