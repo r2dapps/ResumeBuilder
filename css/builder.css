@@ -72,6 +72,7 @@
     color: white;
 }
 
+<<<<<<< HEAD
 .btn-icon {
     background: #667eea;
     color: white;
@@ -97,6 +98,8 @@
     font-size: 18px;
 }
 
+=======
+>>>>>>> 4d32a4ac5c3745199c28be8e5021b5f4d001af84
 /* Button Styles */
 .btn {
     display: inline-block;
@@ -109,15 +112,21 @@
     transition: all 0.3s;
     font-size: 16px;
     text-align: center;
+<<<<<<< HEAD
     min-height: 48px;
     box-sizing: border-box;
+=======
+>>>>>>> 4d32a4ac5c3745199c28be8e5021b5f4d001af84
 }
 
 .btn-primary {
     background: linear-gradient(45deg, #667eea, #764ba2);
     color: white;
     border: none;
+<<<<<<< HEAD
     min-width: 120px;
+=======
+>>>>>>> 4d32a4ac5c3745199c28be8e5021b5f4d001af84
 }
 
 .btn-primary:hover {
@@ -130,7 +139,10 @@
     background: #f7fafc;
     color: #667eea;
     border: 2px solid #667eea;
+<<<<<<< HEAD
     min-width: 120px;
+=======
+>>>>>>> 4d32a4ac5c3745199c28be8e5021b5f4d001af84
 }
 
 .btn-secondary:hover {
@@ -344,12 +356,15 @@ input:disabled, select:disabled {
     align-items: center;
 }
 
+<<<<<<< HEAD
 .nav-right {
     display: flex;
     align-items: center;
     gap: 10px;
 }
 
+=======
+>>>>>>> 4d32a4ac5c3745199c28be8e5021b5f4d001af84
 
 
 /* Preview Section */
@@ -408,6 +423,7 @@ input:disabled, select:disabled {
     padding: 8px 16px;
     font-size: 14px;
     white-space: nowrap;
+<<<<<<< HEAD
     min-width: auto;
     width: auto;
 }
@@ -422,6 +438,8 @@ input:disabled, select:disabled {
     background: linear-gradient(135deg, #218838 0%, #1e7e34 100%);
     transform: translateY(-2px);
     box-shadow: 0 4px 12px rgba(40, 167, 69, 0.3);
+=======
+>>>>>>> 4d32a4ac5c3745199c28be8e5021b5f4d001af84
 }
 
 .preview-container {
@@ -448,6 +466,7 @@ input:disabled, select:disabled {
     text-decoration: underline;
 }
 
+<<<<<<< HEAD
 /* Contact Icons */
 .contact-icon {
     font-size: 14px;
@@ -456,6 +475,8 @@ input:disabled, select:disabled {
     opacity: 0.8;
 }
 
+=======
+>>>>>>> 4d32a4ac5c3745199c28be8e5021b5f4d001af84
 /* Desktop improvements */
 @media (min-width: 1200px) {
     .builder-container {
@@ -495,7 +516,11 @@ input:disabled, select:disabled {
     }
     
     .mobile-only {
+<<<<<<< HEAD
         display: flex !important;
+=======
+        display: block;
+>>>>>>> 4d32a4ac5c3745199c28be8e5021b5f4d001af84
     }
     
     .resume-container {
@@ -517,6 +542,7 @@ input:disabled, select:disabled {
         gap: 8px;
         text-align: center;
     }
+<<<<<<< HEAD
     
     /* Mobile last step navigation */
     .step-6 .nav-right .btn-primary {
@@ -526,6 +552,8 @@ input:disabled, select:disabled {
     .step-6 .nav-right {
         justify-content: space-between;
     }
+=======
+>>>>>>> 4d32a4ac5c3745199c28be8e5021b5f4d001af84
 }
 
 @media (max-width: 768px) {
@@ -575,6 +603,7 @@ input:disabled, select:disabled {
         gap: 15px;
     }
     
+<<<<<<< HEAD
     .nav-right {
         flex-direction: row;
         justify-content: center;
@@ -586,6 +615,8 @@ input:disabled, select:disabled {
         max-width: 200px;
     }
     
+=======
+>>>>>>> 4d32a4ac5c3745199c28be8e5021b5f4d001af84
     .top-actions {
         flex-direction: column;
     }
@@ -618,6 +649,7 @@ input:disabled, select:disabled {
     }
 }
 @media print {
+<<<<<<< HEAD
     * {
         -webkit-print-color-adjust: exact !important;
         print-color-adjust: exact !important;
@@ -628,6 +660,8 @@ input:disabled, select:disabled {
         margin: 0.5in;
     }
     
+=======
+>>>>>>> 4d32a4ac5c3745199c28be8e5021b5f4d001af84
     body * {
         visibility: hidden;
     }
@@ -647,11 +681,19 @@ input:disabled, select:disabled {
         margin: 0 !important;
         padding: 20px !important;
         background: white !important;
+<<<<<<< HEAD
         font-size: 11pt !important;
         line-height: 1.6 !important;
     }
     
     .navbar, .form-sidebar, .preview-header, .preview-controls {
+=======
+        font-size: 12pt !important;
+        line-height: 1.4 !important;
+    }
+    
+    .navbar, .form-sidebar, .preview-header {
+>>>>>>> 4d32a4ac5c3745199c28be8e5021b5f4d001af84
         display: none !important;
     }
     
@@ -667,6 +709,7 @@ input:disabled, select:disabled {
     .preview-container {
         display: block !important;
     }
+<<<<<<< HEAD
     
     /* Ensure section titles maintain their colors */
     .section-title {
@@ -739,3 +782,6 @@ input:disabled, select:disabled {
 .autocomplete-item:last-child {
     border-bottom: none;
 }
+=======
+}
+>>>>>>> 4d32a4ac5c3745199c28be8e5021b5f4d001af84

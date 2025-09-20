@@ -102,12 +102,15 @@ li {
     font-weight: bold;
 }
 
+<<<<<<< HEAD
 section > h3,
 section > p,
 section > ul {
     margin-left: 20px;
 }
 
+=======
+>>>>>>> 4d32a4ac5c3745199c28be8e5021b5f4d001af84
 p,
 li {
     text-align: justify;
@@ -117,4 +120,8 @@ li {
 ul {
     padding-left: 20px;
     margin-top: 5px;
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 4d32a4ac5c3745199c28be8e5021b5f4d001af84

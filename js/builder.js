@@ -1,5 +1,6 @@
 // Step Management
 let currentStep = 1;
+<<<<<<< HEAD
 const totalSteps = 7;
 
 // Job titles and companies metadata
@@ -68,6 +69,9 @@ const companies = [
     // Global Technology Giants
     'Google', 'Microsoft', 'Apple', 'Amazon', 'Meta', 'Netflix', 'Tesla', 'Uber', 'Airbnb', 'Spotify', 'Adobe', 'Salesforce', 'Oracle', 'IBM', 'Intel', 'NVIDIA', 'PayPal', 'Square', 'Stripe', 'Zoom', 'Slack', 'Dropbox', 'Twitter', 'LinkedIn', 'GitHub', 'Atlassian', 'Shopify', 'Twilio', 'MongoDB', 'Redis', 'Elastic', 'Docker', 'Cisco', 'VMware', 'ServiceNow', 'Workday', 'Palantir', 'Snowflake', 'Databricks', 'Unity', 'Roblox', 'Epic Games', 'Valve', 'Steam', 'Discord', 'Telegram', 'WhatsApp', 'TikTok', 'Snapchat', 'Pinterest', 'Reddit', 'Quora', 'Stack Overflow', 'Samsung', 'Sony', 'LG', 'Panasonic', 'Toshiba', 'Hitachi', 'Fujitsu', 'NEC', 'Sharp', 'Canon', 'Nikon', 'Olympus', 'Fujifilm', 'Ricoh', 'Epson', 'Brother', 'Kyocera', 'Konica Minolta', 'Xerox', 'HP', 'Dell', 'Lenovo', 'Asus', 'Acer', 'MSI', 'Gigabyte', 'ASRock', 'Corsair', 'Logitech', 'Razer', 'SteelSeries', 'HyperX', 'Cooler Master', 'Thermaltake', 'NZXT', 'Fractal Design', 'be quiet!', 'Seasonic', 'EVGA', 'Corsair', 'G.Skill', 'Crucial', 'Kingston', 'Western Digital', 'Seagate', 'Toshiba', 'Samsung', 'SK Hynix', 'Micron', 'Intel', 'AMD', 'NVIDIA', 'Qualcomm', 'Broadcom', 'MediaTek', 'ARM', 'Imagination Technologies', 'Synopsys', 'Cadence', 'Mentor Graphics', 'Ansys', 'Altium', 'Autodesk', 'Dassault Systemes', 'PTC', 'Siemens PLM Software', 'Bentley Systems', 'ESRI', 'Trimble', 'Hexagon', 'Renishaw', 'FARO Technologies', 'Creaform', 'GOM', 'Zeiss', 'Leica Geosystems', 'Topcon', 'Sokkia', 'Pentax', 'Nikon', 'Canon', 'Sony', 'Panasonic', 'JVC', 'Pioneer', 'Kenwood', 'Alpine', 'Clarion', 'Denso', 'Bosch', 'Continental', 'Magna', 'Aptiv', 'Valeo', 'Faurecia', 'Michelin', 'Bridgestone', 'Goodyear', 'Pirelli', 'Yokohama', 'Hankook', 'Kumho', 'Toyo', 'Falken', 'Nitto', 'BFGoodrich', 'Cooper', 'General Tire', 'Uniroyal', 'Firestone', 'Dunlop', 'Sumitomo', 'Maxxis', 'Nexen', 'GT Radial', 'Sailun', 'Linglong', 'Triangle', 'Doublestar', 'Wanli', 'Sunny', 'Roadstone', 'Atturo', 'Accelera', 'Achilles', 'Antares', 'Arroyo', 'Atlas', 'Autogrip', 'Blackhawk', 'Boto', 'Centara', 'Chaoyang', 'Comforser', 'Crosswind', 'Delinte', 'Dextero', 'Duraturn', 'Ecsta', 'Eldorado', 'Evergreen', 'Farroad', 'Forceum', 'Fullrun', 'Fuzion', 'Gislaved', 'Goodride', 'Greenmax', 'Gripmax', 'Haida', 'Hercules', 'Hifly', 'Horizon', 'Ironman', 'Jinyu', 'Kenda', 'Kinforest', 'Landsail', 'Leao', 'Lexani', 'Lionhart', 'Luccini', 'Mazzini', 'Milestar', 'Minerva', 'Nankang', 'Neuton', 'Nokian', 'Ohtsu', 'Otani', 'Patriot', 'Primewell', 'Radar', 'Roadclaw', 'Roadshine', 'Rotalla', 'Runway', 'Saffiro', 'Sentury', 'Starfire', 'Sumic', 'Sunny', 'Superia', 'Thunderer', 'Tigar', 'Tracmax', 'Trazano', 'Uniroyal', 'Vercelli', 'Vitour', 'Wanli', 'Westlake', 'Winrun', 'Zeetex', 'Zenna'
 ];
+=======
+const totalSteps = 6;
+>>>>>>> 4d32a4ac5c3745199c28be8e5021b5f4d001af84
 
 function changeStep(direction) {
     const newStep = currentStep + direction;
@@ -83,11 +87,14 @@ function changeStep(direction) {
     document.getElementById(`step${currentStep}`).classList.add('active');
     document.querySelector(`.step[data-step="${currentStep}"]`).classList.add('active');
     
+<<<<<<< HEAD
     // Update form-sidebar class for step tracking
     const formSidebar = document.querySelector('.form-sidebar');
     formSidebar.className = formSidebar.className.replace(/step-\d+/g, '');
     formSidebar.classList.add(`step-${currentStep}`);
     
+=======
+>>>>>>> 4d32a4ac5c3745199c28be8e5021b5f4d001af84
     // Mark completed steps
     for (let i = 1; i < currentStep; i++) {
         document.querySelector(`.step[data-step="${i}"]`).classList.add('completed');
@@ -95,6 +102,10 @@ function changeStep(direction) {
     
     // Reset scroll position to top - force scroll
     setTimeout(() => {
+<<<<<<< HEAD
+=======
+        const formSidebar = document.querySelector('.form-sidebar');
+>>>>>>> 4d32a4ac5c3745199c28be8e5021b5f4d001af84
         if (formSidebar) {
             formSidebar.scrollTo({ top: 0, behavior: 'smooth' });
         }
@@ -112,6 +123,7 @@ function updateNavigation() {
     const nextBtn = document.getElementById('nextBtn');
     
     prevBtn.style.display = currentStep === 1 ? 'none' : 'block';
+<<<<<<< HEAD
     
     if (currentStep === totalSteps) {
         nextBtn.style.display = 'none';
@@ -120,6 +132,9 @@ function updateNavigation() {
         nextBtn.textContent = 'Next';
         nextBtn.onclick = function() { changeStep(1); };
     }
+=======
+    nextBtn.style.display = currentStep === totalSteps ? 'none' : 'block';
+>>>>>>> 4d32a4ac5c3745199c28be8e5021b5f4d001af84
 }
 
 // Template Management
@@ -136,19 +151,36 @@ function addExperience() {
     newItem.className = 'experience-item';
     newItem.innerHTML = `
         <div class="form-group">
+<<<<<<< HEAD
             <label>Job Title</label>
             <input type="text" placeholder="Software Engineer" class="jobTitle">
         </div>
         <div class="form-group">
             <label>Company Name</label>
             <input type="text" placeholder="Tech Corp" class="companyName">
+=======
+            <label>Job Title - Company</label>
+            <input type="text" placeholder="Software Engineer - Tech Corp" class="jobTitle">
+>>>>>>> 4d32a4ac5c3745199c28be8e5021b5f4d001af84
         </div>
         <div class="form-group">
             <label>Employment Period</label>
             <div class="date-range">
+<<<<<<< HEAD
                 <input type="month" class="startDate" placeholder="Start Date">
                 <span>to</span>
                 <input type="month" class="endDate" placeholder="End Date">
+=======
+                <div class="custom-date">
+                    <select class="startMonth"><option value="">Month</option></select>
+                    <select class="startYear"><option value="">Year</option></select>
+                </div>
+                <span>to</span>
+                <div class="custom-date">
+                    <select class="endMonth"><option value="">Month</option></select>
+                    <select class="endYear"><option value="">Year</option></select>
+                </div>
+>>>>>>> 4d32a4ac5c3745199c28be8e5021b5f4d001af84
                 <label><input type="checkbox" class="currentJob"> Current Position</label>
             </div>
         </div>
@@ -160,12 +192,15 @@ function addExperience() {
     `;
     container.appendChild(newItem);
     addEventListeners(newItem);
+<<<<<<< HEAD
     
     // Setup autocomplete for new inputs
     const jobTitleInput = newItem.querySelector('.jobTitle');
     const companyInput = newItem.querySelector('.companyName');
     setupAutocomplete(jobTitleInput, jobTitles);
     setupAutocomplete(companyInput, companies);
+=======
+>>>>>>> 4d32a4ac5c3745199c28be8e5021b5f4d001af84
 }
 
 function addProject() {
@@ -203,9 +238,21 @@ function addEducation() {
         <input type="text" placeholder="Institution Name" class="institution">
         <input type="text" placeholder="Degree/Course" class="degree">
         <div class="date-range">
+<<<<<<< HEAD
             <input type="month" class="eduStartDate" placeholder="Start Date">
             <span>to</span>
             <input type="month" class="eduEndDate" placeholder="End Date">
+=======
+            <div class="custom-date">
+                <select class="eduStartMonth"><option value="">Month</option></select>
+                <select class="eduStartYear"><option value="">Year</option></select>
+            </div>
+            <span>to</span>
+            <div class="custom-date">
+                <select class="eduEndMonth"><option value="">Month</option></select>
+                <select class="eduEndYear"><option value="">Year</option></select>
+            </div>
+>>>>>>> 4d32a4ac5c3745199c28be8e5021b5f4d001af84
         </div>
         <input type="number" placeholder="3.8 or 85" class="gpa" step="0.01" min="0" max="100">
         <button type="button" onclick="this.parentElement.remove(); generateResume();">Remove</button>
@@ -313,6 +360,7 @@ function addEventListeners(element) {
     const currentJobCheckbox = element.querySelector('.currentJob');
     if (currentJobCheckbox) {
         currentJobCheckbox.addEventListener('change', function() {
+<<<<<<< HEAD
             const endDate = element.querySelector('.endDate');
             
             if (this.checked) {
@@ -320,6 +368,19 @@ function addEventListeners(element) {
                 endDate.value = '';
             } else {
                 endDate.disabled = false;
+=======
+            const endMonth = element.querySelector('.endMonth');
+            const endYear = element.querySelector('.endYear');
+            
+            if (this.checked) {
+                endMonth.disabled = true;
+                endYear.disabled = true;
+                endMonth.value = '';
+                endYear.value = '';
+            } else {
+                endMonth.disabled = false;
+                endYear.disabled = false;
+>>>>>>> 4d32a4ac5c3745199c28be8e5021b5f4d001af84
             }
             generateResume();
         });
@@ -344,6 +405,7 @@ function addEventListeners(element) {
             select.innerHTML += `<option value="${month}">${month}</option>`;
         });
     });
+<<<<<<< HEAD
     
     // Add date validation for work experience
     const startDate = element.querySelector('.startDate');
@@ -389,6 +451,8 @@ function formatDate(dateString) {
     const date = new Date(dateString + '-01');
     const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
     return `${months[date.getMonth()]} ${date.getFullYear()}`;
+=======
+>>>>>>> 4d32a4ac5c3745199c28be8e5021b5f4d001af84
 }
 
 // Resume Generation (using existing logic from generator.js)
@@ -414,6 +478,7 @@ function generateResume() {
     }
     
     let contactInfo = [];
+<<<<<<< HEAD
     contactInfo.push(`<span class="contact-icon email"><i class="fas fa-envelope"></i></span> ${email}`, `<span class="contact-icon phone"><i class="fas fa-phone"></i></span> ${phone}`);
     if (linkName1 && linkUrl1) {
         const url1 = linkUrl1.startsWith('http') ? linkUrl1 : `https://${linkUrl1}`;
@@ -424,6 +489,18 @@ function generateResume() {
         contactInfo.push(`<span class="contact-icon link"><i class="fas fa-external-link-alt"></i></span> <a href="${url2}" target="_blank">${linkName2}</a>`);
     }
     contactInfo.push(`<span class="contact-icon location"><i class="fas fa-map-marker-alt"></i></span> ${location}`);
+=======
+    contactInfo.push(email, phone);
+    if (linkName1 && linkUrl1) {
+        const url1 = linkUrl1.startsWith('http') ? linkUrl1 : `https://${linkUrl1}`;
+        contactInfo.push(`<a href="${url1}" target="_blank">${linkName1}</a>`);
+    }
+    if (linkName2 && linkUrl2) {
+        const url2 = linkUrl2.startsWith('http') ? linkUrl2 : `https://${linkUrl2}`;
+        contactInfo.push(`<a href="${url2}" target="_blank">${linkName2}</a>`);
+    }
+    contactInfo.push(location);
+>>>>>>> 4d32a4ac5c3745199c28be8e5021b5f4d001af84
     
     headerHTML += `<div class="contact">${contactInfo.join(' | ')}</div>`;
     resume.querySelector('.header').innerHTML = headerHTML;
@@ -470,6 +547,7 @@ function generateResume() {
     
     experienceItems.forEach(item => {
         const jobTitle = item.querySelector('.jobTitle').value;
+<<<<<<< HEAD
         const companyName = item.querySelector('.companyName').value;
         const currentJob = item.querySelector('.currentJob').checked;
         const responsibilities = item.querySelector('.responsibilities').value;
@@ -488,6 +566,26 @@ function generateResume() {
             const jobHeader = companyName ? `${jobTitle} - ${companyName}` : jobTitle;
             experienceHTML += `
                 <h3>${jobHeader}</h3>
+=======
+        const currentJob = item.querySelector('.currentJob').checked;
+        const responsibilities = item.querySelector('.responsibilities').value;
+        
+        if (jobTitle) {
+            let duration = '';
+            const startMonth = item.querySelector('.startMonth').value;
+            const startYear = item.querySelector('.startYear').value;
+            const endMonth = item.querySelector('.endMonth').value;
+            const endYear = item.querySelector('.endYear').value;
+            
+            if (startMonth && startYear) {
+                const start = `${startMonth} ${startYear}`;
+                const end = currentJob ? 'Present' : (endMonth && endYear ? `${endMonth} ${endYear}` : '');
+                duration = `${start} - ${end}`;
+            }
+            
+            experienceHTML += `
+                <h3>${jobTitle}</h3>
+>>>>>>> 4d32a4ac5c3745199c28be8e5021b5f4d001af84
                 <p><em>${duration}</em></p>
                 <ul>
             `;
@@ -557,11 +655,21 @@ function generateResume() {
         
         if (institution || degree) {
             let duration = '';
+<<<<<<< HEAD
             const startDate = item.querySelector('.eduStartDate').value;
             const endDate = item.querySelector('.eduEndDate').value;
             
             if (startDate && endDate) {
                 duration = `${formatDate(startDate)} - ${formatDate(endDate)}`;
+=======
+            const startMonth = item.querySelector('.eduStartMonth').value;
+            const startYear = item.querySelector('.eduStartYear').value;
+            const endMonth = item.querySelector('.eduEndMonth').value;
+            const endYear = item.querySelector('.eduEndYear').value;
+            
+            if (startMonth && startYear && endMonth && endYear) {
+                duration = `${startMonth} ${startYear} - ${endMonth} ${endYear}`;
+>>>>>>> 4d32a4ac5c3745199c28be8e5021b5f4d001af84
             }
             
             let gpaText = '';
@@ -589,7 +697,11 @@ function generateResume() {
         resume.appendChild(educationSection);
     }
     
+<<<<<<< HEAD
     // Update certifications (from Achievements section)
+=======
+    // Update certifications
+>>>>>>> 4d32a4ac5c3745199c28be8e5021b5f4d001af84
     const certificationItems = document.querySelectorAll('.certification-item');
     let hasCertifications = false;
     let certificationsHTML = '<div class="section-title">Certifications</div><ul>';
@@ -615,6 +727,32 @@ function generateResume() {
         resume.appendChild(certificationsSection);
     }
     
+<<<<<<< HEAD
+=======
+    // Update languages
+    const languageItems = document.querySelectorAll('.language-item');
+    let hasLanguages = false;
+    let languagesHTML = '<div class="section-title">Languages</div><ul>';
+    
+    languageItems.forEach(item => {
+        const langName = item.querySelector('.languageName').value;
+        const proficiency = item.querySelector('.proficiency').value;
+        
+        if (langName) {
+            languagesHTML += `<li>${langName}${proficiency ? ` - ${proficiency}` : ''}</li>`;
+            hasLanguages = true;
+        }
+    });
+    
+    languagesHTML += '</ul>';
+    
+    if (hasLanguages) {
+        const languagesSection = document.createElement('section');
+        languagesSection.innerHTML = languagesHTML;
+        resume.appendChild(languagesSection);
+    }
+    
+>>>>>>> 4d32a4ac5c3745199c28be8e5021b5f4d001af84
     // Update awards
     const awardItems = document.querySelectorAll('.award-item');
     let hasAwards = false;
@@ -641,6 +779,7 @@ function generateResume() {
         resume.appendChild(awardsSection);
     }
     
+<<<<<<< HEAD
     // Update strengths
     const strengths = document.getElementById('strengths').value;
     if (strengths) {
@@ -676,6 +815,9 @@ function generateResume() {
     }
     
     // Update interests (always last)
+=======
+    // Update interests
+>>>>>>> 4d32a4ac5c3745199c28be8e5021b5f4d001af84
     const interests = document.getElementById('interests').value;
     if (interests) {
         const interestsSection = document.createElement('section');
@@ -701,6 +843,7 @@ function generateFilename() {
 }
 
 function downloadPDF() {
+<<<<<<< HEAD
     // Show loading indicator
     const downloadBtn = document.querySelector('button[onclick="downloadPDF()"]');
     const originalText = downloadBtn.textContent;
@@ -1135,6 +1278,68 @@ function downloadPDF() {
     tempContainer.appendChild(clone);
     document.body.appendChild(tempContainer);
     
+=======
+    const element = document.getElementById('resume');
+    
+    const clone = element.cloneNode(true);
+    
+    // Apply print styles directly to clone
+    clone.style.cssText = `
+        width: 100% !important;
+        max-width: none !important;
+        margin: 0 !important;
+        padding: 15px !important;
+        box-shadow: none !important;
+        background: white !important;
+        font-size: 11pt !important;
+        line-height: 1.6 !important;
+        border-radius: 0 !important;
+    `;
+    
+    // Apply template-specific borders and colors
+    const currentTemplate = document.getElementById('templateSelector').value;
+    if (currentTemplate.includes('template1')) {
+        // Modern Minimalist - blue header border
+        const header = clone.querySelector('.header');
+        if (header) header.style.borderBottom = '3px solid #3498db';
+        const sectionTitles = clone.querySelectorAll('.section-title');
+        sectionTitles.forEach(title => {
+            title.style.background = '#3498db';
+            title.style.color = '#fff';
+        });
+    } else if (currentTemplate.includes('template2')) {
+        // Executive Professional - left border and blue accents
+        clone.style.borderLeft = '6px solid #2b6cb0';
+        const header = clone.querySelector('.header');
+        if (header) header.style.borderBottom = '2px solid #e2e8f0';
+        const sectionTitles = clone.querySelectorAll('.section-title');
+        sectionTitles.forEach(title => {
+            title.style.background = '#2b6cb0';
+            title.style.color = '#fff';
+        });
+        const h3s = clone.querySelectorAll('h3');
+        h3s.forEach(h3 => h3.style.borderLeft = '3px solid #bee3f8');
+    } else if (currentTemplate.includes('template4')) {
+        // Classic Elegant - right border
+        clone.style.borderRight = '3px double #8b4513';
+        const header = clone.querySelector('.header');
+        if (header) header.style.borderBottom = '2px solid #8b4513';
+        const sectionTitles = clone.querySelectorAll('.section-title');
+        sectionTitles.forEach(title => {
+            title.style.borderTop = '1px solid #d2b48c';
+            title.style.borderBottom = '1px solid #d2b48c';
+            title.style.color = '#8b4513';
+        });
+    } else {
+        // Original template - blue section titles
+        const sectionTitles = clone.querySelectorAll('.section-title');
+        sectionTitles.forEach(title => {
+            title.style.background = '#57688a';
+            title.style.color = '#fff';
+        });
+    }
+
+>>>>>>> 4d32a4ac5c3745199c28be8e5021b5f4d001af84
     const opt = {
         margin: [10, 10, 10, 10],
         filename: generateFilename(),
@@ -1143,8 +1348,12 @@ function downloadPDF() {
             scale: 2,
             useCORS: true,
             scrollY: 0,
+<<<<<<< HEAD
             allowTaint: true,
             backgroundColor: '#ffffff'
+=======
+            allowTaint: true
+>>>>>>> 4d32a4ac5c3745199c28be8e5021b5f4d001af84
         },
         jsPDF: {
             unit: 'mm',
@@ -1153,6 +1362,7 @@ function downloadPDF() {
         },
         pagebreak: { mode: ['css', 'legacy'] }
     };
+<<<<<<< HEAD
     
     html2pdf().set(opt).from(clone).save().then(() => {
         // Clean up
@@ -1891,6 +2101,10 @@ function downloadDOC() {
         downloadBtn.textContent = originalText;
         downloadBtn.disabled = false;
     });
+=======
+
+    html2pdf().set(opt).from(clone).save();
+>>>>>>> 4d32a4ac5c3745199c28be8e5021b5f4d001af84
 }
 
 // Populate year and month dropdowns
@@ -1918,6 +2132,7 @@ function populateMonths() {
     });
 }
 
+<<<<<<< HEAD
 function setupAutocomplete(input, suggestions) {
     const container = document.createElement('div');
     container.className = 'autocomplete-container';
@@ -1997,6 +2212,8 @@ function setupAutocomplete(input, suggestions) {
     });
 }
 
+=======
+>>>>>>> 4d32a4ac5c3745199c28be8e5021b5f4d001af84
 // Mobile preview toggle
 function togglePreview() {
     const previewSection = document.querySelector('.preview-section');
@@ -2004,10 +2221,17 @@ function togglePreview() {
     
     if (previewSection.classList.contains('show')) {
         previewSection.classList.remove('show');
+<<<<<<< HEAD
         if (toggleBtn) toggleBtn.title = 'Show Preview';
     } else {
         previewSection.classList.add('show');
         if (toggleBtn) toggleBtn.title = 'Hide Preview';
+=======
+        toggleBtn.textContent = 'Show Preview';
+    } else {
+        previewSection.classList.add('show');
+        toggleBtn.textContent = 'Hide Preview';
+>>>>>>> 4d32a4ac5c3745199c28be8e5021b5f4d001af84
         previewSection.scrollIntoView({ behavior: 'smooth' });
     }
 }
@@ -2016,12 +2240,15 @@ function togglePreview() {
 document.addEventListener('DOMContentLoaded', function() {
     populateYears();
     populateMonths();
+<<<<<<< HEAD
     // Setup autocomplete for existing inputs
     const jobTitleInput = document.querySelector('.jobTitle');
     const companyInput = document.querySelector('.companyName');
     
     if (jobTitleInput) setupAutocomplete(jobTitleInput, jobTitles);
     if (companyInput) setupAutocomplete(companyInput, companies);
+=======
+>>>>>>> 4d32a4ac5c3745199c28be8e5021b5f4d001af84
     
     // Set default template or check for selected template from templates page
     const selectedTemplate = localStorage.getItem('selectedTemplate');
@@ -2091,6 +2318,7 @@ document.addEventListener('DOMContentLoaded', function() {
     document.querySelectorAll('.currentJob').forEach(checkbox => {
         checkbox.addEventListener('change', function() {
             const experienceItem = this.closest('.experience-item');
+<<<<<<< HEAD
             const endDate = experienceItem.querySelector('.endDate');
             
             if (this.checked) {
@@ -2098,11 +2326,25 @@ document.addEventListener('DOMContentLoaded', function() {
                 endDate.value = '';
             } else {
                 endDate.disabled = false;
+=======
+            const endMonth = experienceItem.querySelector('.endMonth');
+            const endYear = experienceItem.querySelector('.endYear');
+            
+            if (this.checked) {
+                endMonth.disabled = true;
+                endYear.disabled = true;
+                endMonth.value = '';
+                endYear.value = '';
+            } else {
+                endMonth.disabled = false;
+                endYear.disabled = false;
+>>>>>>> 4d32a4ac5c3745199c28be8e5021b5f4d001af84
             }
             generateResume();
         });
     });
     
+<<<<<<< HEAD
     // Add date validation to existing elements
     document.querySelectorAll('.experience-item').forEach(item => {
         const startDate = item.querySelector('.startDate');
@@ -2130,6 +2372,8 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
     
+=======
+>>>>>>> 4d32a4ac5c3745199c28be8e5021b5f4d001af84
     // Generate initial resume
     generateResume();
     updateNavigation();
@@ -2184,4 +2428,8 @@ document.addEventListener('DOMContentLoaded', function() {
         });
         step.style.cursor = 'pointer';
     });
+<<<<<<< HEAD
 });
+=======
+});
+>>>>>>> 4d32a4ac5c3745199c28be8e5021b5f4d001af84

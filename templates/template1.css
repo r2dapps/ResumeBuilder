@@ -50,12 +50,15 @@ section {
     widows: 2;
 }
 
+<<<<<<< HEAD
 section > h3,
 section > p,
 section > ul {
     margin-left: 20px;
 }
 
+=======
+>>>>>>> 4d32a4ac5c3745199c28be8e5021b5f4d001af84
 .experience-item {
     margin-bottom: 20px;
 }
@@ -109,4 +112,8 @@ ul {
 
 .print-controls button:hover {
     background: #2980b9;
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 4d32a4ac5c3745199c28be8e5021b5f4d001af84
