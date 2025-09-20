@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume Templates - ResumeBuilder</title>
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="templates/style.css" id="previewStyle">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">
+                <img src="assets/logo.ico" alt="R2D" class="logo-icon">
+                <h2>ResumeBuilder</h2>
+            </a>
+            <div class="hamburger" onclick="toggleMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="templates.html" class="nav-link active">Templates</a></li>
+                <li><a href="builder.html" class="nav-link">Create Resume</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main>
+        <section class="templates-hero">
+            <div class="container">
+                <h1>Choose Your Template</h1>
+                <p>Select from our collection of professional resume templates</p>
+            </div>
+        </section>
+
+        <section class="templates-grid">
+            <div class="container">
+                <div class="templates-container">
+                    <div class="template-card" data-template="style.css">
+                        <div class="template-preview">
+                            <div class="mini-resume original">
+                                <div class="mini-header">
+                                    <div class="mini-name">Priya Sharma</div>
+                                    <div class="mini-contact">Software Developer</div>
+                                </div>
+                                <div class="mini-section"></div>
+                                <div class="mini-section"></div>
+                            </div>
+                        </div>
+                        <div class="template-info">
+                            <h3>Original</h3>
+                            <p>Clean and professional design</p>
+                            <button class="btn btn-primary" onclick="selectTemplate('style.css')">Use Template</button>
+                        </div>
+                    </div>
+
+                    <div class="template-card" data-template="template1.css">
+                        <div class="template-preview">
+                            <div class="mini-resume modern">
+                                <div class="mini-header">
+                                    <div class="mini-name">Arjun Reddy</div>
+                                    <div class="mini-contact">Data Scientist</div>
+                                </div>
+                                <div class="mini-section blue"></div>
+                                <div class="mini-section blue"></div>
+                            </div>
+                        </div>
+                        <div class="template-info">
+                            <h3>Modern Minimalist</h3>
+                            <p>Sleek design with blue accents</p>
+                            <button class="btn btn-primary" onclick="selectTemplate('template1.css')">Use Template</button>
+                        </div>
+                    </div>
+
+                    <div class="template-card" data-template="template2.css">
+                        <div class="template-preview">
+                            <div class="mini-resume executive">
+                                <div class="mini-header">
+                                    <div class="mini-name">Kavya Nair</div>
+                                    <div class="mini-contact">Product Manager</div>
+                                </div>
+                                <div class="mini-section executive"></div>
+                                <div class="mini-section executive"></div>
+                            </div>
+                        </div>
+                        <div class="template-info">
+                            <h3>Executive Professional</h3>
+                            <p>Corporate style with elegant borders</p>
+                            <button class="btn btn-primary" onclick="selectTemplate('template2.css')">Use Template</button>
+                        </div>
+                    </div>
+
+                    <div class="template-card" data-template="template3.css">
+                        <div class="template-preview">
+                            <div class="mini-resume creative">
+                                <div class="mini-header">
+                                    <div class="mini-name">Vikram Singh</div>
+                                    <div class="mini-contact">UI/UX Designer</div>
+                                </div>
+                                <div class="mini-section creative"></div>
+                                <div class="mini-section creative"></div>
+                            </div>
+                        </div>
+                        <div class="template-info">
+                            <h3>Creative Designer</h3>
+                            <p>Modern design with gradient accents</p>
+                            <button class="btn btn-primary" onclick="selectTemplate('template3.css')">Use Template</button>
+                        </div>
+                    </div>
+
+                    <div class="template-card" data-template="template4.css">
+                        <div class="template-preview">
+                            <div class="mini-resume classic">
+                                <div class="mini-header">
+                                    <div class="mini-name">Ananya Iyer</div>
+                                    <div class="mini-contact">Business Analyst</div>
+                                </div>
+                                <div class="mini-section classic"></div>
+                                <div class="mini-section classic"></div>
+                            </div>
+                        </div>
+                        <div class="template-info">
+                            <h3>Classic Elegant</h3>
+                            <p>Traditional style with serif fonts</p>
+                            <button class="btn btn-primary" onclick="selectTemplate('template4.css')">Use Template</button>
+                        </div>
+                    </div>
+
+                    <div class="template-card" data-template="template5.css">
+                        <div class="template-preview">
+                            <div class="mini-resume clean">
+                                <div class="mini-header">
+                                    <div class="mini-name">Ravi Kumar</div>
+                                    <div class="mini-contact">DevOps Engineer</div>
+                                </div>
+                                <div class="mini-section clean"></div>
+                                <div class="mini-section clean"></div>
+                            </div>
+                        </div>
+                        <div class="template-info">
+                            <h3>Modern Clean</h3>
+                            <p>Contemporary design with red accents</p>
+                            <button class="btn btn-primary" onclick="selectTemplate('template5.css')">Use Template</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 ResumeBuilder. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        function selectTemplate(template) {
+            localStorage.setItem('selectedTemplate', template);
+            window.location.href = 'builder.html';
+        }
+    </script>
+    <script src="js/navigation.js"></script>
+</body>
+</html>

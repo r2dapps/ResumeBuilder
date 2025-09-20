@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume Builder - Create Your Resume</title>
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/builder.css">
+    <link rel="stylesheet" href="templates/style.css" id="resumeStyle">
+    <link rel="stylesheet" href="templates/print.css" media="print">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <script src="https://unpkg.com/docx@8.5.0/build/index.umd.js"></script>
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">
+                <img src="assets/logo.ico" alt="R2D" class="logo-icon">
+                <h2>ResumeBuilder</h2>
+            </a>
+            <div class="hamburger" onclick="toggleMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="templates.html" class="nav-link">Templates</a></li>
+                <li><a href="builder.html" class="nav-link active">Create Resume</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="builder-main">
+        <div class="builder-container">
+            <div class="form-sidebar">
+                <div class="form-header">
+                    <h2>Build Your Resume</h2>
+
+                    <div class="step-indicator">
+                        <button class="step active" data-step="1">Personal</button>
+                        <button class="step" data-step="2">Skills</button>
+                        <button class="step" data-step="3">Experience</button>
+                        <button class="step" data-step="4">Projects</button>
+                        <button class="step" data-step="5">Education</button>
+                        <button class="step" data-step="6">Achievements</button>
+                        <button class="step" data-step="7">Additional</button>
+                    </div>
+                </div>
+
+                <div class="form-content">
+                    <div class="step-content active" id="step1">
+                        <h3>Personal Information</h3>
+                        <div class="form-group">
+                            <label for="fullName">Full Name *</label>
+                            <input type="text" id="fullName" placeholder="Enter your full name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="jobTitle">Job Title</label>
+                            <input type="text" id="jobTitle" placeholder="e.g., Software Engineer">
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email *</label>
+                            <input type="email" id="email" placeholder="your.email@example.com" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Phone *</label>
+                            <input type="tel" id="phone" placeholder="+1 (555) 123-4567" required
+                                pattern="[+0-9\s\(\)\-]*">
+                        </div>
+                        <div class="form-group">
+                            <label>Professional Links</label>
+                            <div class="link-group">
+                                <input type="text" id="linkName1" placeholder="LinkedIn" class="link-name">
+                                <input type="url" id="linkUrl1" placeholder="https://linkedin.com/in/yourname"
+                                    class="link-url">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="link-group">
+                                <input type="text" id="linkName2" placeholder="Portfolio" class="link-name">
+                                <input type="url" id="linkUrl2" placeholder="https://yourportfolio.com"
+                                    class="link-url">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="location">Location *</label>
+                            <input type="text" id="location" placeholder="City, State/Country" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="summary">Professional Summary</label>
+                            <textarea id="summary"
+                                placeholder="Brief overview of your professional background and key achievements (2-4 lines)"
+                                rows="4"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="step-content" id="step2">
+                        <h3>Skills</h3>
+                        <div id="skillsContainer">
+                            <div class="skill-item">
+                                <div class="form-group">
+                                    <label>Skill Category</label>
+                                    <input type="text" placeholder="e.g., Programming Languages" class="skillCategory">
+                                </div>
+                                <div class="form-group">
+                                    <label>Skills</label>
+                                    <input type="text" placeholder="JavaScript, Python, Java" class="skillList">
+                                </div>
+                            </div>
+                        </div>
+                        <button type="button" onclick="addSkill()" class="btn-add">+ Add Skill Category</button>
+                    </div>
+
+                    <div class="step-content" id="step3">
+                        <h3>Work Experience</h3>
+                        <div id="experienceContainer">
+                            <div class="experience-item">
+                                <div class="form-group">
+                                    <label>Job Title</label>
+                                    <input type="text" placeholder="Software Engineer" class="jobTitle">
+                                </div>
+                                <div class="form-group">
+                                    <label>Company Name</label>
+                                    <input type="text" placeholder="Tech Corp" class="companyName">
+                                </div>
+                                <div class="form-group">
+                                    <label>Employment Period</label>
+                                    <div class="date-range">
+                                        <input type="month" class="startDate" placeholder="Start Date">
+                                        <span>to</span>
+                                        <input type="month" class="endDate" placeholder="End Date">
+                                        <label><input type="checkbox" class="currentJob"> Current Position</label>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label>Job Responsibilities</label>
+                                    <textarea
+                                        placeholder="• Developed web applications\n• Led team of 5 developers\n• Improved system performance by 30%"
+                                        rows="3" class="responsibilities"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <button type="button" onclick="addExperience()" class="btn-add">+ Add Experience</button>
+                    </div>
+
+                    <div class="step-content" id="step4">
+                        <h3>Projects</h3>
+                        <div id="projectsContainer">
+                            <div class="project-item">
+                                <div class="form-group">
+                                    <label>Project Name</label>
+                                    <input type="text" placeholder="E-commerce Website" class="projectName">
+                                </div>
+                                <div class="form-group">
+                                    <label>Description</label>
+                                    <textarea
+                                        placeholder="Built a full-stack e-commerce platform with user authentication, payment integration, and admin dashboard"
+                                        rows="3" class="projectDesc"></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label>Technologies Used</label>
+                                    <input type="text" placeholder="React, Node.js, MongoDB, Stripe API"
+                                        class="projectTech">
+                                </div>
+                                <div class="form-group">
+                                    <label>Demo/Repository Link (Optional)</label>
+                                    <input type="url"
+                                        placeholder="https://github.com/username/project or https://demo.com"
+                                        class="projectLink">
+                                </div>
+                            </div>
+                        </div>
+                        <button type="button" onclick="addProject()" class="btn-add">+ Add Project</button>
+                    </div>
+
+                    <div class="step-content" id="step5">
+                        <h3>Education</h3>
+                        <div id="educationContainer">
+                            <div class="education-item">
+                                <div class="form-group">
+                                    <label>Institution Name</label>
+                                    <input type="text" placeholder="University of Technology" class="institution">
+                                </div>
+                                <div class="form-group">
+                                    <label>Degree/Course</label>
+                                    <input type="text" placeholder="Bachelor of Computer Science" class="degree">
+                                </div>
+                                <div class="form-group">
+                                    <label>Study Period</label>
+                                    <div class="date-range">
+                                        <input type="month" class="eduStartDate" placeholder="Start Date">
+                                        <span>to</span>
+                                        <input type="month" class="eduEndDate" placeholder="End Date">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label>GPA/Percentage</label>
+                                    <input type="number" placeholder="3.8 or 85" class="gpa" step="0.01" min="0"
+                                        max="100">
+                                </div>
+                            </div>
+                        </div>
+                        <button type="button" onclick="addEducation()" class="btn-add">+ Add Education</button>
+                    </div>
+                    
+                    <div class="step-content" id="step6">
+                        <h3>Achievements</h3>
+                        <div class="form-group">
+                            <label>Certifications</label>
+                            <div id="certificationsContainer">
+                                <div class="certification-item">
+                                    <div class="form-group">
+                                        <label>Certification Name</label>
+                                        <input type="text" placeholder="AWS Certified Solutions Architect"
+                                            class="certName">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Issuing Organization</label>
+                                        <input type="text" placeholder="Amazon Web Services" class="certOrg">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Date Obtained</label>
+                                        <div class="custom-date single">
+                                            <select class="certMonth">
+                                                <option value="">Month</option>
+                                            </select>
+                                            <select class="certYear">
+                                                <option value="">Year</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <button type="button" onclick="addCertification()" class="btn-add">+ Add
+                                Certification</button>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Awards & Recognition</label>
+                            <div id="awardsContainer">
+                                <div class="award-item">
+                                    <div class="form-group">
+                                        <label>Award Title</label>
+                                        <input type="text" placeholder="Employee of the Year" class="awardTitle">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Issuer/Institution</label>
+                                        <input type="text" placeholder="Tech Corp" class="awardIssuer">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Date Received</label>
+                                        <div class="custom-date single">
+                                            <select class="awardMonth">
+                                                <option value="">Month</option>
+                                            </select>
+                                            <select class="awardYear">
+                                                <option value="">Year</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <button type="button" onclick="addAward()" class="btn-add">+ Add Award</button>
+                        </div>
+                    </div>
+
+                    <div class="step-content" id="step7">
+                        <h3>Additional Information</h3>
+                        <div class="form-group">
+                            <label>Strengths</label>
+                            <textarea id="strengths"
+                                placeholder="Leadership, Problem Solving, Team Collaboration, Communication"
+                                rows="3"></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Languages</label>
+                            <div id="languagesContainer">
+                                <div class="language-item">
+                                    <div class="form-group">
+                                        <label>Language</label>
+                                        <input type="text" placeholder="English" class="languageName">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Proficiency Level</label>
+                                        <select class="proficiency">
+                                            <option value="">Select Level</option>
+                                            <option value="Native">Native</option>
+                                            <option value="Fluent">Fluent</option>
+                                            <option value="Advanced">Advanced</option>
+                                            <option value="Intermediate">Intermediate</option>
+                                            <option value="Basic">Basic</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <button type="button" onclick="addLanguage()" class="btn-add">+ Add Language</button>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Interests (Optional)</label>
+                            <textarea id="interests" placeholder="Photography, Hiking, Open Source Contributions"
+                                rows="2"></textarea>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="form-navigation">
+                    <button id="prevBtn" onclick="changeStep(-1)" class="btn btn-secondary"
+                        style="display: none;">Previous</button>
+                    <div class="nav-right">
+                        <button id="previewToggle" onclick="togglePreview()" class="btn-icon mobile-only"
+                            title="Show Preview">
+                            <span class="preview-icon">👁</span>
+                        </button>
+                        <button id="nextBtn" onclick="changeStep(1)" class="btn btn-primary">Next</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="preview-section">
+                <div class="preview-header">
+                    <h3>Live Preview</h3>
+                    <div class="preview-controls">
+                        <div class="template-selector">
+                            <label for="templateSelector">Choose Template:</label>
+                            <select id="templateSelector" onchange="changeTemplate()">
+                                <option value="templates/template1.css" selected>Modern Minimalist</option>
+                                <option value="templates/style.css">Classic Professional</option>
+                                <option value="templates/template2.css">Executive Professional</option>
+                                <option value="templates/template3.css">Creative Designer</option>
+                                <option value="templates/template4.css">Classic Elegant</option>
+                                <option value="templates/template5.css">Modern Clean</option>
+                            </select>
+                        </div>
+                        <div class="pdf-actions">
+                            <button onclick="window.print()" class="btn btn-secondary">Print PDF</button>
+                            <button onclick="downloadPDF()" class="btn btn-primary">Download PDF</button>
+                            <button onclick="downloadDOC()" class="btn btn-success">Download DOC</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="preview-container">
+                    <div id="resume" class="resume-container">
+                        <div class="header">
+                            <div class="name">Rajesh Kumar</div>
+                            <div class="contact"><span class="contact-icon email"><i class="fas fa-envelope"></i></span> Email | <span class="contact-icon phone"><i class="fas fa-phone"></i></span> Phone | <span class="contact-icon location"><i class="fas fa-map-marker-alt"></i></span> Location</div>
+                        </div>
+                        <section>
+                            <div class="section-title">Professional Summary</div>
+                            <p>Your professional summary will appear here...</p>
+                        </section>
+                        <section>
+                            <div class="section-title">Skills</div>
+                            <p>Your skills will appear here...</p>
+                        </section>
+                        <section>
+                            <div class="section-title">Work Experience</div>
+                            <p>Your work experience will appear here...</p>
+                        </section>
+                        <section>
+                            <div class="section-title">Education</div>
+                            <p>Your education will appear here...</p>
+                        </section>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="js/builder.js"></script>
+    <script src="js/navigation.js"></script>
+</body>
+
+</html>
